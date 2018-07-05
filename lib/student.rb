@@ -61,6 +61,13 @@ class Student
     self.new_from_db(DB[:conn].execute(sql, name).flatten)
   end
 
+  def update
+    sql = <<-SQL
+      UPDATE students SET name = ?, album = ? WHERE id = ?
+    SQL
+    DB[:conn].execute(sql, self.name, self.album, self.id)
+  end
+
 
 end
 
